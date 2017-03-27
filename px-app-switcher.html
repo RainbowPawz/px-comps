@@ -1,0 +1,51 @@
+<!--
+    Relative paths assume component is being run from inside an app or another component, where dependencies are flat
+    siblings. When this component is run from its own repo (e.g. tests, examples), we assume the server is started with
+    'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
+-->
+<link rel="import" href="../polymer/polymer.html"/>
+
+<link rel="import" href="css/px-app-switcher-styles.html">
+
+<!--
+REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
+
+##### Usage
+
+    <px-app-switcher items='[{icon: "fa fa-lg fa-briefcase",title: "Asset Explorer",url: "http://opal.corporate.ge.com/opal/"},{icon: "fa fa-lg fa-wrench",title: "EVM",url: "http://microservices.corporate.ge.com/evmdashboard/index.html"},{icon: "fa fa-lg fa-camera",title: "System Status",url: "http://systemstatus.ge.com/"}]'></px-app-switcher>
+
+@element px-app-switcher
+@blurb REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
+@homepage index.html
+@demo index.html
+-->
+
+<dom-module id="px-app-switcher">
+  <template>
+    <style include="px-app-switcher-styles"></style>
+    <iron-icon class="menu-button" id="btn3" icon="fa:fa-th"></iron-icon>
+    <px-popover for="btn3" orientation="bottom" position="absolute" enhanced="true" hideOverlay="true">
+      <table class="table table--large table--fixed table--no-cells">
+        <tr>
+          <template is="dom-repeat" items="{{iconsList}}">
+            <td class="center">
+              <a href$="{{item.url}}">
+                <div class="flex flex--row flex--center flex--middle">
+                  <div>
+                    <i class$="{{item.icon}}"></i>
+                  </div>
+                </div>
+                <div class="flex flex--row flex--center flex--middle">
+                  <div>
+                    <span>{{item.title}}</span>
+                  </div>
+                </div>
+              </a>
+            </td>
+          </template>
+        </tr>
+      </table>
+    </px-popover>
+  </template>
+</dom-module>
+<script src="dist/px-app-switcher.js"></script>

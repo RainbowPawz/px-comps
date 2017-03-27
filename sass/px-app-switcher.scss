@@ -1,0 +1,114 @@
+/*
+ * Copyright (c) 2014 GE Global Research. All rights reserved.
+ *
+ * The copyright to the computer software herein is the property of
+ * GE Global Research. The software may be used and/or copied only
+ * with the written permission of GE Global Research or in accordance
+ * with the terms and conditions stipulated in the agreement/contract
+ * under which the software has been supplied.
+ */
+
+//
+// Sass for the for the px-app-switcher component
+//
+// @Heather McManigal
+//
+
+
+
+// Settings
+@import "px-colors-design/_settings.colors.scss";
+
+// Tools
+
+// Generic
+@import "px-normalize-design/_generic.normalize.scss";
+@import "px-box-sizing-design/_generic.box-sizing.scss";
+@import "px-helpers-design/_generic.helpers.scss";
+
+// Base
+@import "px-flexbox-design/_base.flexbox.scss";
+@import "px-viewport-design/_base.viewport.scss";
+
+@import "px-forms-design/_base.forms.scss";
+
+
+@import "px-headings-design/_base.headings.scss";
+
+
+@import "px-tables-design/_base.tables.scss";
+
+
+@import "px-meta-lists-design/_meta.lists.scss";
+
+
+@import "px-meta-buttons-design/_meta.buttons.scss";
+
+// Colors
+
+@import "px-colors-design/_settings.colors.scss";
+
+// Meta
+
+// Objects
+
+// Component
+
+.menu-button {
+  box-shadow: 5px 5px;
+  border-radius: 10px;
+  background-color: $gray1;
+  padding: 5px;
+  width: 35px;
+  height: 35px;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+span {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+px-popover {
+  background-color: $gray3;
+  table {
+    margin: 0;
+    td {
+      padding: 15px 0;
+      span{
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+  color: $black;
+  background-color: $blue-dark;
+  border-radius: 5px;
+}
+/*
+px-popover /deep/ #popoverWrapper {
+  right: 15px !important;
+  left: 0 !important;
+  float: right;
+  #carat {
+    float: right;
+    right: 68px !important;
+    left: initial !important;
+  }
+  #popover {
+    float:right;
+  }
+}*/
+
+// Trumps
+@import "inuit-clearfix/_trumps.clearfix.scss";
+@import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";
+@import "px-widths-responsive-design/_trumps.widths-responsive.scss";
+
+
