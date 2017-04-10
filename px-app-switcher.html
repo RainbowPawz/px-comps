@@ -4,7 +4,7 @@
     'gulp serve' (or similar server setup) to enable correct finding of bower dependencies for local runs.
 -->
 <link rel="import" href="../polymer/polymer.html"/>
-
+<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
 <link rel="import" href="css/px-app-switcher-styles.html">
 
 <!--
@@ -23,9 +23,29 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
 <dom-module id="px-app-switcher">
   <template>
     <style include="px-app-switcher-styles"></style>
-    <iron-icon class="menu-button" id="btn3" icon="fa:fa-th"></iron-icon>
-    <px-popover for="btn3" orientation="bottom" position="absolute" enhanced="true" hideOverlay="true">
-      <table class="table table--large table--fixed table--no-cells">
+    <style>
+      :root {
+        --shared-position-right: '';
+        --shared-position-left: '';
+        --shared-margin: '';
+        --carat-right:'';
+        --carat-left:'';
+        --carat-top: -4px;
+      }
+    </style>
+    <style is="custom-style" include="px-app-switcher-styles">
+
+      .fa-lg.px-app-switcher{
+        vertical-align: 0 !important;
+        height: 20px;
+      }
+
+    </style>
+    <div class="parent-container" style="width:100%">
+    <iron-icon on-tap="_clickButtonEvent" class="menu-button" id="btn2" icon="fa:fa-th" style="float:right"></iron-icon>
+    <div class$="{{displayString}} switcher-body">
+      <div id="carat"></div>
+      <table class=" table table--large table--fixed table--no-cells">
         <tr>
           <template is="dom-repeat" items="{{iconsList}}">
             <td class="center">
@@ -45,7 +65,10 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
           </template>
         </tr>
       </table>
-    </px-popover>
+    </div>
+    </div>
   </template>
+
 </dom-module>
 <script src="dist/px-app-switcher.js"></script>
+

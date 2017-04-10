@@ -72,40 +72,54 @@ span {
   text-align: center;
 }
 
-px-popover {
-  background-color: $gray3;
-  table {
-    margin: 0;
-    td {
-      padding: 15px 0;
-      span{
-        font-size: 12px;
-      }
-    }
-  }
-}
-
 a {
   text-decoration: none;
   color: $black;
   background-color: $blue-dark;
   border-radius: 5px;
 }
-/*
-px-popover /deep/ #popoverWrapper {
-  right: 15px !important;
-  left: 0 !important;
-  float: right;
-  #carat {
-    float: right;
-    right: 68px !important;
-    left: initial !important;
-  }
-  #popover {
-    float:right;
-  }
-}*/
 
+
+.switcher-body {
+  display:none;
+
+  &.open {
+    border: 1px solid #bfcad2;
+    right: var(--shared-position-right);
+    left: var(--shared-position-left);
+    margin-top: var(--shared-margin);
+    display:block;
+    z-index: 9999;
+    background: #fff;
+    max-width: 285px;
+    position: absolute;
+  }
+}
+
+#carat{
+  border-color: #b6c3cc #b6c3cc transparent transparent;
+  transform: rotate(45deg);
+  box-shadow: -1px -1px 0 #b6c3cc;;
+  transform-origin: 50% 50%;
+  position: absolute;
+  width: 9.9px;
+  height: 9.9px;
+  background-color: #fff;
+  top: var(--carat-top);
+  right:var(--carat-right);
+  left:var(--carat-left);
+  z-index: -1;
+}
+
+table {
+  border-color: #fff !important;
+  margin-bottom: 0 !important;
+  td {
+    border: 1px solid #ffffff !important;
+    padding: 15px 10px !important;
+  }
+
+}
 // Trumps
 @import "inuit-clearfix/_trumps.clearfix.scss";
 @import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";
