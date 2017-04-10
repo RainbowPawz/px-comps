@@ -1,9 +1,12 @@
-#px-app-switcher
+# Px-App-Switcher [![Build Status](https://travis-ci.org/PredixDev/px-app-switcher.svg?branch=master)](https://travis-ci.org/PredixDev/px-app-switcher)
 
 ## Overview
 
-px-app-switcher is a Predix UI component
+The px-popover is a Predix UI component for displaying additional information to a user.
 
+## documentation
+
+Read the full API and veiw the demo [here](https://predixdev.github.io/px-app-switcher)
 ## Usage
 
 ### Prerequisites

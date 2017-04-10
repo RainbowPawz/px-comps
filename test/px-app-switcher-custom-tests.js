@@ -6,20 +6,20 @@ function runCustomTests() {
   // Use testCase(options) for a more convenient setup of the test cases
   suite('Custom Automation Tests for px-app-switcher', function() {
     test('Check initial value of counter', function(done){
-      var counterEl = Polymer.dom(document).querySelector('px-app-switcher'),
-          counterValueEl = Polymer.dom(counterEl.root).querySelector('span');
-      assert.equal(counterValueEl.textContent, '0');
+      var classList = document.getElementById('switcher-body-id').classList;
+      assert.isTrue(!classList.contains('open'));
       done();
     });
 
-    test('Clicking px-app-switcher increments the counter', function(done){
-      var counterEl = Polymer.dom(document).querySelector('px-app-switcher'),
-          counterValueEl = Polymer.dom(counterEl.root).querySelector('span');
-      assert.equal(counterValueEl.textContent, '0');
 
-      counterEl.click();
+    test('Clicking px-app-switcher increments the counter', function(done){
+      var element = document.getElementById('switcher-body-id');
+      var classList = element.classList;
+      assert.isTrue(!classList.contains('open'));
+
+      element.click();
       flush(function(){
-        assert.equal(counterValueEl.textContent, '1');
+        assert.isTrue(classList.contains('open'));
       });
       done();
     });
