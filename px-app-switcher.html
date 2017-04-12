@@ -40,7 +40,7 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
       <table class=" table table--large table--fixed table--no-cells">
         <tr>
           <template is="dom-repeat" items="{{iconsList}}">
-            <td class$="center pull-left [[colValue]]">
+            <td class$="center pull-left [[_colValue]]">
               <a href$="{{item.url}}">
                 <div class="flex flex--row flex--center flex--middle">
                   <div>
@@ -99,7 +99,16 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
        */
       properties: {
         /**
-         * This property keeps track of the number items in the main list.
+         * This property keeps track of the main list/array of objects.
+         *
+         * - object data format:
+         *                       [{
+         *                         icon:'fa icon of choice', // This can be left blank and no image will display,
+         *                                                   // provided a title is in place.
+         *                         title: 'Title of thing',  // This could be left blank provided a fa icon is
+         *                                                   // in place.
+         *                         url: 'url path of choice'
+         *                       }]
          */
         items: {
           type: Array,
@@ -109,7 +118,7 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
           }
         },
         /**
-         * This property keeps track of the icons list.
+         * This property keeps track of the icons list one it has been transformed and checked for proper data.
          */
         iconsList: {
           type: Array,
@@ -119,7 +128,7 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
           computed: '_computedItems(items, items.*)'
         },
         /**
-         * This property keeps track of the boolean for open and closing of the popover.
+         * This property keeps track of the boolean for opening and closing of the popover.
          *
          */
         open: {
@@ -128,8 +137,8 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
         },
         /**
          * This property keeps track of the boolean displaying as grid.
-         * - 'yes': will display in grid format
-         * - 'no' : will display in list format
+         * - 'yes': will display in grid format.
+         * - 'no' : will display in list format.
          */
         isGrid: {
           type: String,
@@ -145,14 +154,17 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
           value: ''
         },
         /**
-         * This property keeps track the display col spacing.
+         * This property keeps track the display col spacing value, set to private.
          *
          */
-        colValue:{
+        _colValue:{
           type: String,
           value: ''
         },
-
+        /**
+         * This property keeps track the main button image icon. Any fa icon can be passed in if desired.
+         * - Default: fa:fa-th
+         */
         ironIconImage: {
           type: String,
           value: ''
@@ -199,19 +211,22 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
       _setColValue: function (array) {
         if(this.isgrid.toLowerCase() === 'yes') {
           if(array.length % 3 === 0) {
-            this.colValue = 'col-sm-4';
+            this._colValue = 'col-sm-4';
           } else if (array.length % 2 === 0) {
-            this.colValue = 'col-sm-3';
+            this._colValue = 'col-sm-3';
           }
         } else {
-          this.colValue = 'col-sm-12';
+          this._colValue = 'col-sm-12';
         }
       },
-
+      /**
+       * Handles setting of iron icon main button.
+       *
+       * @method setIronIcon
+       */
       _setIronIcon: function () {
         this.ironIconImage = (this.ironiconimage ? this.ironiconimage : 'fa:fa-th')
       },
-
       /**
        * Handles click on the element to either hide or show popover.
        *
@@ -237,11 +252,11 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
        */
       _openOrHideElement: function(displayBoolean, displayString) {
         this.open = displayBoolean
-        this.displayString = displayString + (this.isgrid === 'yes' ? ' isGrid' : ' isList');
+        this.displayString = displayString + (this.isgrid.toLowerCase() === 'yes' ? ' isGrid' : ' isList');
       },
 
       /**
-       * Handleshow to display popover element on show.
+       * Handles how to display popover element on show.
        *
        * @method setPosition
        */
@@ -259,15 +274,15 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
         } else {
           this.customStyle['--shared-position-left'] = button.left + 'px !important;';
           this.customStyle['--shared-position-right'] = '';
-          this.customStyle['--shared-margin'] = '20px';
+          this.customStyle['--shared-margin'] = '15px';
           this.customStyle['--carat-right'] = '';
-          this.customStyle['--carat-left'] = '10px !important;';
+          this.customStyle['--carat-left'] = '15px !important;';
         }
         this.updateStyles();
       } ,
 
       /**
-       * Handles how to position popover on screen resize
+       * Handles how to position popover on screen resize.
        *
        * @method onIronResize
        */
