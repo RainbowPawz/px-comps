@@ -2,7 +2,7 @@
 
 ## Overview
 
-The px-popover is a Predix UI component for displaying additional information to a user.
+The px-app-switcher is a Predix UI component for displaying additional information to a user with and icon list popdown.
 
 ## documentation
 
