@@ -74,7 +74,7 @@ span {
 
 a {
   text-decoration: none;
-  color: $black;
+  color: $black !important;
   background-color: $blue-dark;
   border-radius: 5px;
 }
@@ -82,7 +82,9 @@ a {
 
 .switcher-body {
   display:none;
-
+  &.isList{
+    max-width:225px !important;
+  }
   &.open {
     border: 1px solid #bfcad2;
     right: var(--shared-position-right);
@@ -91,7 +93,7 @@ a {
     display:block;
     z-index: 9999;
     background: #fff;
-    max-width: 285px;
+    max-width: 370px;
     position: absolute;
   }
 }
@@ -116,13 +118,45 @@ table {
   margin-bottom: 0 !important;
   td {
     border: 1px solid #ffffff !important;
-    padding: 15px 10px !important;
+    padding: 15px 10px 10px 10px!important;
+    min-width:120px;
   }
 
 }
+
+
+@media (max-width: 576px) {
+  .col-xs-6 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .col-xs-4 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 33.33%;
+    flex: 0 0 33.33%;
+    max-width: 33.33%;
+  }
+
+  .col-xs-3 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  .switcher-body{
+    max-width:225px !important;
+  }
+
+
+}
+
 // Trumps
 @import "inuit-clearfix/_trumps.clearfix.scss";
 @import "px-spacing-responsive-design/_trumps.spacing-responsive.scss";
 @import "px-widths-responsive-design/_trumps.widths-responsive.scss";
-@import "../node_modules/bootstrap/scss/boostrap-grid.scss";
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
 

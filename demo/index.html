@@ -39,7 +39,7 @@
 
       <px-demo-component style="width:100%">
         <px-app-switcher
-          items="{{props.items.defaultValue}}">
+          items="{{props.items.defaultValue}}" isGrid="{{props.isGrid.defaultValue}}">
         </px-app-switcher>
       </px-demo-component>
       <!-- END Component ------------------------------------------------------>
@@ -148,40 +148,6 @@
       },
 
       /**
-       * An array of pre-configured `props` that can be used to provide the user
-       * with a set of common examples. These configs will be made available
-       * as a set of tabs the user can click that will automatically change
-       * the `props` to specific values.
-       *
-       * @example
-       *
-       * Each config is an object. Its keys should be the names of the configurable
-       * properties defined in your `demoProps` above. Each key's value should
-       * be the new prop value for the configuration. You can also include these
-       * optional keys:
-       *
-       * - `configName` - a String value that will be used for the title of the tab
-       * - `configReset` - a Boolean, if `true` resets all props (even those not specified in the config) when this config is selected. Defaults to `false`.
-       *
-       * Example of two configs:
-       *
-       * ```
-       *     [
-       *       {
-       *         configName: "Basic",
-       *         preventRangeSelection: true,
-       *         displayMode: 'year',
-       *         blockDatesBefore: '2016-10-10T00:00:00.000Z'
-       *       },
-       *       {
-       *         configName: "Advanced",
-       *         preventRangeSelection: false,
-       *         displayMode: 'day',
-       *         blockDatesBefore: '2010-10-10T00:00:00.000Z'
-       *       }
-       *     ]
-       * ```
-       *
        * @property demoProps
        * @type {Array}
        */
@@ -203,6 +169,11 @@
       items: {
         type: Array,
         defaultValue: [{icon: "fa fa-lg fa-briefcase",title: "Asset Explorer",url: "http://opal.corporate.ge.com/opal/"},{icon: "fa fa-lg fa-wrench",title: "EVM",url: "http://microservices.corporate.ge.com/evmdashboard/index.html"},{icon: "fa fa-lg fa-camera",title: "System Status",url: "http://systemstatus.ge.com/"}],
+        type: 'text'
+      },
+      isGrid: {
+        type: String,
+        defaultValue: "yes",
         type: 'text'
       }
     }

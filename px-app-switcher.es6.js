@@ -13,6 +13,8 @@
     attached: function() {
       // Enable document-wide tap recognizer.
       Polymer.Gestures.add(document, 'tap', null);
+      this._setColValue(this.items);
+      this._setIronIcon();
       this._created();
     },
     /**
@@ -24,11 +26,15 @@
       this.unlisten(this.firstElementChild.childNodes[1], 'tap', '_clickButtonEvent');
       this.unlisten(document, 'click', '_clickButtonEvent');
     },
+    /**
+     * Properties block, expose attribute values to the DOM via 'reflect'
+     *
+     * @property properties
+     * @type Object
+     */
     properties: {
       /**
        * This property keeps track of the number items in the main list.
-       *
-       * @property counterValue
        */
       items: {
         type: Array,
@@ -39,8 +45,6 @@
       },
       /**
        * This property keeps track of the icons list.
-       *
-       * @property iconsList
        */
       iconsList: {
         type: Array,
@@ -52,20 +56,40 @@
       /**
        * This property keeps track of the boolean for open and closing of the popover.
        *
-       * @property open
        */
       open: {
         type: Boolean,
         value: false
       },
       /**
+       * This property keeps track of the boolean displaying as grid.
+       * - 'yes': will display in grid format
+       * - 'no' : will display in list format
+       */
+      isGrid: {
+        type: String,
+        value: ''
+      },
+      /**
        * This property keeps track the display string for open or closing css.
        *
-       * @property displayString
        */
       displayString :{
         type: String,
         notify: true,
+        value: ''
+      },
+      /**
+       * This property keeps track the display col spacing.
+       *
+       */
+      colValue:{
+        type: String,
+        value: ''
+      },
+
+      ironIconImage: {
+        type: String,
         value: ''
       }
     },
@@ -102,6 +126,26 @@
           return computedItemsArr;
       }
     },
+    /**
+     * Parses an array of strings into an iterative array for the html template.
+     *
+     * @method computedItems
+     */
+    _setColValue: function (array) {
+      if(this.isgrid.toLowerCase() === 'yes') {
+        if(array.length % 3 === 0) {
+          this.colValue = 'col-sm-4';
+        } else if (array.length % 2 === 0) {
+          this.colValue = 'col-sm-3';
+        }
+      } else {
+        this.colValue = 'col-sm-12';
+      }
+    },
+
+    _setIronIcon: function () {
+      this.ironIconImage = (this.ironiconimage ? this.ironiconimage : 'fa:fa-th')
+    },
 
     /**
      * Handles click on the element to either hide or show popover.
@@ -128,7 +172,7 @@
      */
     _openOrHideElement: function(displayBoolean, displayString) {
       this.open = displayBoolean
-      this.displayString = displayString;
+      this.displayString = displayString + (this.isgrid === 'yes' ? ' isGrid' : ' isList');
     },
 
     /**
