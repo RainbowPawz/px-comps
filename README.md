@@ -1,4 +1,4 @@
-# Px-App-Switcher [![Build Status](https://travis-ci.org/PredixDev/px-app-switcher.svg?branch=master)](https://travis-ci.org/PredixDev/px-app-switcher)
+# Px-App-Switcher
 
 ## Overview
 
