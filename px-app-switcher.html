@@ -199,7 +199,7 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
        * @method setIronIcon
        */
       _setIronIcon: function () {
-        this.ironIconImage = (this.ironiconimage ? this.ironiconimage : 'fa:fa-th')
+        this.ironIconImage = (this.ironIconImage ? this.ironIconImage : 'fa:fa-th')
       },
       /**
        * Handles click on the element to either hide or show popover.
@@ -217,6 +217,8 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
             this._openOrHideElement(true, 'open');
           }
         }
+        event.stopPropagation();
+        event.preventDefault();
       },
 
       /**
@@ -235,7 +237,6 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
        * @method setPosition
        */
       _setPosition: function() {
-        var bodyRect = event.currentTarget.parentElement.getBoundingClientRect();
         var button = event.currentTarget.getBoundingClientRect();
 
         if(button.right >  + window.innerWidth / 2) {
