@@ -209,7 +209,7 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
        * @method computedItems
        */
       _setColValue: function (array) {
-        if(this.isgrid.toLowerCase() === 'yes') {
+        if(this.isGrid.toLowerCase() === 'yes') {
           if(array.length % 3 === 0) {
             this._colValue = 'col-sm-4';
           } else if (array.length % 2 === 0) {
@@ -252,7 +252,7 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
        */
       _openOrHideElement: function(displayBoolean, displayString) {
         this.open = displayBoolean
-        this.displayString = displayString + (this.isgrid.toLowerCase() === 'yes' ? ' isGrid' : ' isList');
+        this.displayString = displayString + (this.isGrid.toLowerCase() === 'yes' ? ' isGrid' : ' isList');
       },
 
       /**
