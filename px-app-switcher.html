@@ -34,30 +34,30 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
       }
     </style>
     <div class="parent-container" style="width:100%">
-    <iron-icon on-tap="_clickButtonEvent" class="menu-button" id="btn2" icon="{{ironIconImage}}"></iron-icon>
-    <div class$="{{displayString}} switcher-body" id="switcher-body-id">
-      <div id="carat"></div>
-      <table class=" table table--large table--fixed table--no-cells">
-        <tr>
-          <template is="dom-repeat" items="{{iconsList}}">
-            <td class$="center pull-left [[_colValue]]">
-              <a href$="{{item.url}}">
-                <div class="flex flex--row flex--center flex--middle">
-                  <div>
-                    <i class$="{{item.icon}}"></i>
+      <iron-icon on-tap="_clickButtonEvent" class="menu-button" id="btn2" icon="{{ironIconImage}}"></iron-icon>
+      <div class$="{{displayString}} switcher-body" id="switcher-body-id">
+        <div id="carat"></div>
+        <table class=" table table--large table--fixed table--no-cells">
+          <tr>
+            <template is="dom-repeat" items="{{items}}">
+              <td class$="center pull-left [[_colValue]]">
+                <a href$="{{item.url}}">
+                  <div class="flex flex--row flex--center flex--middle">
+                    <div>
+                      <i class$="{{item.icon}}"></i>
+                    </div>
                   </div>
-                </div>
-                <div class="flex flex--row flex--center flex--middle">
-                  <div>
-                    <span>{{item.title}}</span>
+                  <div class="flex flex--row flex--center flex--middle">
+                    <div>
+                      <span>{{item.title}}</span>
+                    </div>
                   </div>
-                </div>
-              </a>
-            </td>
-          </template>
-        </tr>
-      </table>
-    </div>
+                </a>
+              </td>
+            </template>
+          </tr>
+        </table>
+      </div>
     </div>
   </template>
 
@@ -88,7 +88,7 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
        * @method detached
        */
       detached: function () {
-        this.unlisten(this.firstElementChild.childNodes[1], 'tap', '_clickButtonEvent');
+        this.unlisten(this, 'tap', '_clickButtonEvent');
         this.unlisten(document, 'click', '_clickButtonEvent');
       },
       /**
@@ -113,19 +113,7 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
         items: {
           type: Array,
           notify: true,
-          value: function () {
-            return [];
-          }
-        },
-        /**
-         * This property keeps track of the icons list one it has been transformed and checked for proper data.
-         */
-        iconsList: {
-          type: Array,
-          value: function () {
-            return [];
-          },
-          computed: '_computedItems(items, items.*)'
+          value: []
         },
         /**
          * This property keeps track of the boolean for opening and closing of the popover.
@@ -185,24 +173,10 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
        * @method created
        */
       _created: function () {
-        this.listen(this.firstElementChild.childNodes[1], 'tap', '_clickButtonEvent');
-        this.listen(document, 'click', '_clickButtonEvent');
+        this.listen(this, 'tap', '_clickButtonEvent');
+        this.listen(document, 'tap', '_clickButtonEvent');
       },
 
-      /**
-       * Parses an array of strings into an iterative array for the html template.
-       *
-       * @method computedItems
-       */
-      _computedItems: function (items) {
-        if (this.items) {
-          var computedItemsArr = [];
-          items.forEach(function (item, index) {
-            computedItemsArr.push(item);
-          });
-          return computedItemsArr;
-        }
-      },
       /**
        * Parses an array of strings into an iterative array for the html template.
        *
@@ -233,7 +207,7 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
        * @method handleButtonEvent
        */
       _clickButtonEvent: function (event) {
-        if(event.type === 'click' && !event.target.classList.contains("menu-button")) {
+        if(event.type === 'tap' && event.target !== this &&!event.target.classList.contains("menu-button")) {
           this._openOrHideElement(false, '');
         } else if(event.type === 'tap' && event.target.classList.contains("menu-button")) {
           if (this.open){
@@ -261,14 +235,13 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
        * @method setPosition
        */
       _setPosition: function() {
-        var bodyRect = this.firstElementChild.getBoundingClientRect();
-        var button = this.firstElementChild.childNodes[1].getBoundingClientRect();
+        var bodyRect = event.currentTarget.parentElement.getBoundingClientRect();
+        var button = event.currentTarget.getBoundingClientRect();
 
         if(button.right >  + window.innerWidth / 2) {
-          var right = ((bodyRect.right - button.right) + (button.width)) + 15;
-          this.customStyle['--shared-position-right'] = right + 'px !important;';
+          this.customStyle['--shared-position-right'] = window.innerWidth - button.right + 'px !important';
           this.customStyle['--shared-position-left'] = '';
-          this.customStyle['--shared-margin'] = '50px';
+          this.customStyle['--shared-margin'] = '15px';
           this.customStyle['--carat-right'] = '10px !important;';
           this.customStyle['--carat-left'] = '';
         } else {
