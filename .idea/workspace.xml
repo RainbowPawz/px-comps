@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7573fe08-9c0e-4afb-adb8-57798b08f123" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/px-app-switcher.js" afterPath="$PROJECT_DIR$/dist/px-app-switcher.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dist/px-app-switcher.js.map" afterPath="$PROJECT_DIR$/dist/px-app-switcher.js.map" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/px-app-switcher.es6.js" afterPath="$PROJECT_DIR$/px-app-switcher.es6.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/px-app-switcher.html" afterPath="$PROJECT_DIR$/px-app-switcher.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -102,7 +98,7 @@
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="150">
-              <caret line="10" column="55" lean-forward="false" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
+              <caret line="10" column="51" lean-forward="false" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -350,12 +346,12 @@
       <option name="presentableId" value="Default" />
       <updated>1490380999839</updated>
       <workItem from="1490381001072" duration="75978000" />
-      <workItem from="1492013597024" duration="4074000" />
+      <workItem from="1492013597024" duration="4265000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80052000" />
+    <option name="totallyTimeSpent" value="80243000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="821" extended-state="6" />
@@ -663,7 +659,7 @@
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
-          <caret line="10" column="55" lean-forward="false" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
+          <caret line="10" column="51" lean-forward="false" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
           <folding />
         </state>
       </provider>
