@@ -3,10 +3,6 @@
 ## Overview
 
 The px-app-switcher is a Predix UI component for displaying additional information to a user with and icon list popdown.
-
-## documentation
-
-Read the full API and veiw the demo [here](https://predixdev.github.io/px-app-switcher)
 ## Usage
 
 ### Prerequisites
@@ -22,7 +18,7 @@ Node, npm and bower are necessary to install the component and dependencies. web
 First, install the component via bower on the command line.
 
 ```
-bower install px-app-switcher --save
+bower install --save https://github.com/RainbowPawz/px-comps.git
 ```
 
 Second, import the component to your application with the following tag in your head.
@@ -42,13 +38,6 @@ Finally, use the component in your application:
 
 <br />
 <hr />
-
-## Documentation
-
-Read the full API and view the demo [here](https://predixdev.github.io/px-app-switcher).
-
-The documentation in this repository is supplemental to the official Predix documentation, which is continuously updated and maintained by the Predix documentation team. Go to [http://predix.io](http://predix.io)  to see the official Predix documentation.
-
 
 ## Local Development
 
