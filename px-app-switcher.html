@@ -216,9 +216,9 @@ REPLACE THIS TEXT WITH A COMPONENT DESCRIPTION
             this._setPosition();
             this._openOrHideElement(true, 'open');
           }
+          event.stopPropagation();
+          event.preventDefault();
         }
-        event.stopPropagation();
-        event.preventDefault();
       },
 
       /**

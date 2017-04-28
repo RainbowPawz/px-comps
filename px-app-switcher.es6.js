@@ -23,7 +23,7 @@
      * @method detached
      */
     detached: function () {
-      this.unlisten(this.firstElementChild.childNodes[1], 'tap', '_clickButtonEvent');
+      this.unlisten(this, 'tap', '_clickButtonEvent');
       this.unlisten(document, 'click', '_clickButtonEvent');
     },
     /**
@@ -48,19 +48,7 @@
       items: {
         type: Array,
         notify: true,
-        value: function () {
-          return [];
-        }
-      },
-      /**
-       * This property keeps track of the icons list one it has been transformed and checked for proper data.
-       */
-      iconsList: {
-        type: Array,
-        value: function () {
-          return [];
-        },
-        computed: '_computedItems(items, items.*)'
+        value: []
       },
       /**
        * This property keeps track of the boolean for opening and closing of the popover.
@@ -120,8 +108,8 @@
      * @method created
      */
     _created: function () {
-      this.listen(this.firstElementChild.childNodes[1], 'tap', '_clickButtonEvent');
-      this.listen(document, 'click', '_clickButtonEvent');
+      this.listen(this, 'tap', '_clickButtonEvent');
+      this.listen(document, 'tap', '_clickButtonEvent');
     },
 
     /**
@@ -129,22 +117,8 @@
      *
      * @method computedItems
      */
-    _computedItems: function (items) {
-      if (this.items) {
-        var computedItemsArr = [];
-        items.forEach(function (item, index) {
-          computedItemsArr.push(item);
-        });
-        return computedItemsArr;
-      }
-    },
-    /**
-     * Parses an array of strings into an iterative array for the html template.
-     *
-     * @method computedItems
-     */
     _setColValue: function (array) {
-      if(this.isgrid.toLowerCase() === 'yes') {
+      if(this.isGrid.toLowerCase() === 'yes') {
         if(array.length % 3 === 0) {
           this._colValue = 'col-sm-4';
         } else if (array.length % 2 === 0) {
@@ -160,7 +134,7 @@
      * @method setIronIcon
      */
     _setIronIcon: function () {
-      this.ironIconImage = (this.ironiconimage ? this.ironiconimage : 'fa:fa-th')
+      this.ironIconImage = (this.ironIconImage ? this.ironIconImage : 'fa:fa-th')
     },
     /**
      * Handles click on the element to either hide or show popover.
@@ -168,7 +142,7 @@
      * @method handleButtonEvent
      */
     _clickButtonEvent: function (event) {
-      if(event.type === 'click' && !event.target.classList.contains("menu-button")) {
+      if(event.type === 'tap' && event.target !== this &&!event.target.classList.contains("menu-button")) {
         this._openOrHideElement(false, '');
       } else if(event.type === 'tap' && event.target.classList.contains("menu-button")) {
         if (this.open){
@@ -177,6 +151,8 @@
           this._setPosition();
           this._openOrHideElement(true, 'open');
         }
+        event.stopPropagation();
+        event.preventDefault();
       }
     },
 
@@ -187,7 +163,7 @@
      */
     _openOrHideElement: function(displayBoolean, displayString) {
       this.open = displayBoolean
-      this.displayString = displayString + (this.isgrid.toLowerCase() === 'yes' ? ' isGrid' : ' isList');
+      this.displayString = displayString + (this.isGrid.toLowerCase() === 'yes' ? ' isGrid' : ' isList');
     },
 
     /**
@@ -196,14 +172,12 @@
      * @method setPosition
      */
     _setPosition: function() {
-      var bodyRect = this.firstElementChild.getBoundingClientRect();
-      var button = this.firstElementChild.childNodes[1].getBoundingClientRect();
+      var button = event.currentTarget.getBoundingClientRect();
 
       if(button.right >  + window.innerWidth / 2) {
-        var right = ((bodyRect.right - button.right) + (button.width)) + 15;
-        this.customStyle['--shared-position-right'] = right + 'px !important;';
+        this.customStyle['--shared-position-right'] = window.innerWidth - button.right + 'px !important';
         this.customStyle['--shared-position-left'] = '';
-        this.customStyle['--shared-margin'] = '50px';
+        this.customStyle['--shared-margin'] = '15px';
         this.customStyle['--carat-right'] = '10px !important;';
         this.customStyle['--carat-left'] = '';
       } else {
