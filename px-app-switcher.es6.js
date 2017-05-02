@@ -148,7 +148,7 @@
         if (this.open){
           this._openOrHideElement(false, '');
         } else {
-          this._setPosition();
+          this._setPosition(event);
           this._openOrHideElement(true, 'open');
         }
         event.stopPropagation();
@@ -171,7 +171,7 @@
      *
      * @method setPosition
      */
-    _setPosition: function() {
+    _setPosition: function(event) {
       var button = event.currentTarget.getBoundingClientRect();
 
       if(button.right >  + window.innerWidth / 2) {
